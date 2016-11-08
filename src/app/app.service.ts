@@ -9,7 +9,7 @@ export class AppService {
   constructor(private http: Http) {}
 
   instagramFeed(): Observable<any> {
-    return this.http.get('https://bryggverket.se/instagram/latest')
+    return this.http.get('https://api.bryggverket.se/instagram/latest')
       .map((r: Response) => r.json().images)
   }
 }
