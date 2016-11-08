@@ -1,0 +1,9 @@
+<h1>
+  {{title}}
+</h1>
+<main>
+  <p>
+   <input #input type="text" placeholder="Filtrera..." (input)="inputSubject.next(input.value)">
+  </p>
+  <app-insta-feed [feed]="data$ | async"></app-insta-feed>
+</main>
