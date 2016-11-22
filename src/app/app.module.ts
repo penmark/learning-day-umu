@@ -2,24 +2,29 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppComponent } from './app.component';
-import { AppService } from './app.service';
-import { InstaFeedComponent } from './insta-feed/insta-feed.component';
-import { InstaFeedItemComponent } from './insta-feed-item/insta-feed-item.component';
+import { RoutingModule } from './routing.module';
+import { StartComponent } from './start/start.component';
+import { NavComponent } from './nav/nav.component';
+import { instaFeedReducer } from './insta-feed/insta-feed.reducer';
 
 @NgModule({
   declarations: [
     AppComponent,
-    InstaFeedComponent,
-    InstaFeedItemComponent
+    StartComponent,
+    NavComponent,
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RoutingModule,
+    StoreModule.provideStore({instaFeed: instaFeedReducer}),
+    StoreDevtoolsModule.instrumentOnlyWithExtension(),
   ],
-  providers: [AppService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

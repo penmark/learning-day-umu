@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { InstaFeedItem } from '../insta-feed';
+import { InstaFeedItem } from './insta-feed';
 
 @Component({
   selector: 'app-insta-feed-item',
@@ -9,5 +9,4 @@ import { InstaFeedItem } from '../insta-feed';
 })
 export class InstaFeedItemComponent {
   @Input() item: InstaFeedItem;
-
 }

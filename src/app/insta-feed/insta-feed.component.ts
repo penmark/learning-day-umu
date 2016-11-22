@@ -1,6 +1,5 @@
 import { Component, Input, ChangeDetectionStrategy, style, animate, transition, trigger } from '@angular/core';
-import { Observable } from 'rxjs';
-import { InstaFeed } from '../insta-feed';
+import { InstaFeed } from './insta-feed';
 
 @Component({
   selector: 'app-insta-feed',
