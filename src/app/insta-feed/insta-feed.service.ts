@@ -33,7 +33,7 @@ export class InstaFeedService {
   }
 
   private fetch(): Observable<InstaFeed> {
-    return this.http.get('//api.bryggverket.se/instagram/latest')
+    return this.http.get('//api.bryggverket.se/instagram')
       .map((r: Response) => r.json().images)
   }
 }
