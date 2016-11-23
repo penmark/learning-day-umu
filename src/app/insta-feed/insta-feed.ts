@@ -5,7 +5,7 @@ export interface InstaImage {
 }
 
 export interface InstaFeedItem {
-  caption: string;
+  caption: {text: string};
   images: {
     thumbnail: InstaImage;
   },

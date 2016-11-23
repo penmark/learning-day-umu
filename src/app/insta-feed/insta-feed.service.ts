@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../index';
@@ -12,7 +12,7 @@ import { LoadSuccess, LoadFailure, Load } from './insta-feed.reducer';
 export class InstaFeedService {
   constructor(private http: Http, private store: Store<AppState>) {
     this.feed()
-      // Ladda ifall vi inte har några feed items
+      // Ladda bara ifall vi inte har några feed items
       .filter(feed => feed.length == 0)
       .do(() => store.dispatch(new Load())) // För att trigga "laddar"
       .delay(500) // Bafföratt hinna se "laddar"
@@ -26,6 +26,7 @@ export class InstaFeedService {
   loading(): Observable<boolean> {
     return this.store.select(s => s.instaFeed.loading)
   }
+
   feed(): Observable<InstaFeed> {
     return this.store
       .select(s => s.instaFeed)
@@ -34,6 +35,6 @@ export class InstaFeedService {
 
   private fetch(): Observable<InstaFeed> {
     return this.http.get('https://api.bryggverket.se/instagram')
-      .map((r: Response) => r.json().images)
+      .map((r: Response) => r.json())
   }
 }

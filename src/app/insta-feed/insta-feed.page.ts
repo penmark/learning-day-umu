@@ -25,7 +25,7 @@ export class InstaFeedPage {
       .combineLatest(inputObservable)
       .map(([feed, filter]) => {
         console.log('# of feed items:', feed.length, ', current filter:', filter);
-        return feed.filter(item => item.caption.match(new RegExp(filter, 'i')))
+        return feed.filter(item => item.caption.text.match(new RegExp(filter, 'i')))
       })
   }
 }
