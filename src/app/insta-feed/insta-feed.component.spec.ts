@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { InstaFeedComponent } from './insta-feed.component';
+import { InstaFeedItemComponent } from './insta-feed-item.component';
 
 describe('InstaFeedComponent', () => {
   let component: InstaFeedComponent;
@@ -11,7 +12,7 @@ describe('InstaFeedComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InstaFeedComponent ]
+      declarations: [ InstaFeedComponent, InstaFeedItemComponent ]
     })
     .compileComponents();
   }));

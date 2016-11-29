@@ -1,14 +1,19 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { NavComponent } from './nav/nav.component';
 
 describe('App: LearningDayNg', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent, NavComponent
       ],
+      imports: [
+        RouterTestingModule
+      ]
     });
   });
 
@@ -21,13 +26,13 @@ describe('App: LearningDayNg', () => {
   it(`should have as title 'app works!'`, async(() => {
     let fixture = TestBed.createComponent(AppComponent);
     let app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app works!');
+    expect(app.title).toEqual('Lörning day!');
   }));
 
   it('should render title in a h1 tag', async(() => {
     let fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     let compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('app works!');
+    expect(compiled.querySelector('h1').textContent).toContain('Lörning day!');
   }));
 });

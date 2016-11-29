@@ -1,6 +1,6 @@
 export interface InstaImage {
-  height: number;
-  width: number;
+  height?: number;
+  width?: number;
   url: string;
 }
 
