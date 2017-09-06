@@ -1,5 +1,6 @@
 import { Action, ActionReducer } from '@ngrx/store';
 import { InstaFeed } from './insta-feed';
+import { List } from 'immutable';
 
 export const InstaFeedActionTypes = {
   LOAD: '[insta-feed] Load',
@@ -33,23 +34,23 @@ export interface InstaFeedState {
 }
 
 const initialState: InstaFeedState = {
-  feed: [],
-  filtered: [],
+  feed: List(),
+  filtered: List(),
   loading: false
 };
 
-export const instaFeedReducer: ActionReducer<InstaFeedState> = (state = initialState, {type, payload}: InstaFeedAction): InstaFeedState => {
+export function instaFeedReducer(state = initialState, {type, payload}: InstaFeedAction): InstaFeedState {
   switch (type) {
     case InstaFeedActionTypes.LOAD: {
       return Object.assign({}, state, {loading: true});
     }
     case InstaFeedActionTypes.LOAD_SUCCESS: {
-      return Object.assign({}, state, {feed: payload, loading: false});
+      return Object.assign({}, state, {feed: List(payload), loading: false});
     }
     case InstaFeedActionTypes.LOAD_FAILURE: {
-      return Object.assign({}, state, {feed: [], loading: false})
+      return Object.assign({}, state, {feed: List(), loading: false});
     }
     default:
       return state;
   }
-};
+}

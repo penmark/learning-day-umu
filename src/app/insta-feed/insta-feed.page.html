@@ -2,11 +2,12 @@
   Laddar feed...
 </div>
 <div *ngIf="!(loading$ | async)">
-<p>
-  <input type="text"
+  <p>
+    <input type="text"
          [placeholder]="placeholder"
          #filter
          (input)="inputSubject.next(filter.value)">
-</p>
-<app-insta-feed [feed]="filteredFeed$ | async"></app-insta-feed>
+  </p>
+  <p>{{matchCount$ | async}} matches</p>
+  <app-insta-feed [feed]="filteredFeed$ | async"></app-insta-feed>
 </div>

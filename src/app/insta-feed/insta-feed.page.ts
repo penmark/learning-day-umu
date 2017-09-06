@@ -1,16 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { InstaFeedService } from './insta-feed.service';
-import { Subject, Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import { InstaFeed } from './insta-feed';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/withLatestFrom';
+import 'rxjs/add/operator/combineLatest';
+
 
 @Component({
   templateUrl: 'insta-feed.page.html'
 })
-export class InstaFeedPage {
+// tslint:disable-next-line:component-class-suffix
+export class InstaFeedPage implements OnInit {
   filteredFeed$: Observable<InstaFeed>;
   loading$: Observable<boolean>;
+  matchCount$: Observable<number>;
   placeholder = 'Filtrera...';
-  inputSubject = new Subject();
+  inputSubject = new Subject<string>();
 
   constructor(private service: InstaFeedService) {
   }
@@ -24,8 +32,9 @@ export class InstaFeedPage {
     this.filteredFeed$ = this.service.feed()
       .combineLatest(inputObservable)
       .map(([feed, filter]) => {
-        console.log('# of feed items:', feed.length, ', current filter:', filter);
-        return feed.filter(item => item.caption.text.match(new RegExp(filter, 'i')))
-      })
+        console.log('# of feed items:', feed.size, ', current filter:', filter);
+        return feed.filter(item => item.caption.text.match(new RegExp(filter, 'i')) !== null) as InstaFeed;
+      });
+    this.matchCount$ = this.filteredFeed$.map(feed => feed.size);
   }
 }

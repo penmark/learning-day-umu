@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./start.component.scss']
 })
 export class StartComponent {
-  text = 'Chip chip å välkommen till starten'
+  text = 'Chip chip å välkommen till starten';
 }

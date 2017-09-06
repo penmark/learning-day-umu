@@ -8,7 +8,7 @@ import { InstaFeedItem } from './insta-feed';
 describe('InstaFeedItemComponent', () => {
   let component: InstaFeedItemComponent;
   let fixture: ComponentFixture<InstaFeedItemComponent>;
-  let item: InstaFeedItem = {link: 'a link', caption: {text: 'a caption'}, images: {thumbnail: {url: 'a url'}}};
+  const item: InstaFeedItem = {link: 'a link', caption: {text: 'a caption'}, images: {thumbnail: {url: 'a url'}}};
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ InstaFeedItemComponent ]
